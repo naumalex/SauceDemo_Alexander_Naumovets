@@ -3,17 +3,17 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProductsPage extends ProductsBasePage {
+public class ProductsPage extends BaseProductsPage {
     private final By addToCartButton = By.cssSelector("[id^='add-to-cart']");
     private final By productLink = By.cssSelector("[id$='_link']");
-    /*private final String productContainerLocator =
-            "//div[@class = 'inventory_item_name' and text()='%s']" +
-                    "/ancestor::div[@class = 'inventory_item']";*/
+    private final By sortSelect = By.cssSelector(
+            "#header_container .product_sort_container");
     By productsPageHeader = By.id("header_container");
-    By productItems = By.cssSelector(".inventory_item");
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -33,16 +33,9 @@ public class ProductsPage extends ProductsBasePage {
         productContainer.findElement(productLink).click();
 
     }
-    public List<WebElement> getProductItems() {
-        return driver.findElements(productItems);
-    }
 
-    public void sortProductItems() {
-
+    public void sortProductItems(String sortOption) {
+        Select sortSelectElement = new Select(driver.findElement(sortSelect));
+        sortSelectElement.selectByVisibleText(sortOption);
     }
-    /*
-    private WebElement getProductContainerByName(String productName) {
-        return driver.findElement(
-                By.xpath(String.format(productContainerLocator, productName)));
-    }*/
 }

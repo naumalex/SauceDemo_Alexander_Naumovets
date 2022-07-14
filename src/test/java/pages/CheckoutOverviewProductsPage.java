@@ -3,11 +3,11 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutOverviewPage extends ProductsBasePage {
+public class CheckoutOverviewProductsPage extends BaseProductsPage {
 
     private final By finishButton = By.cssSelector("#finish");
 
-    public CheckoutOverviewPage(WebDriver driver) {
+    public CheckoutOverviewProductsPage(WebDriver driver) {
         super(driver);
     }
 

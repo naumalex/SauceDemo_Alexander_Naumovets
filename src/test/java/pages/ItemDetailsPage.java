@@ -35,8 +35,4 @@ public class ItemDetailsPage extends HomePage{
         return driver.findElement(itemPrice).getText();
     }
 
-    /*public void waitUntilPageIsLoaded() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(driver -> driver.findElements(backToProductsButton).size() > 0);
-    }*/
 }

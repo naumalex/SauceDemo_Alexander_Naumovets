@@ -3,14 +3,14 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutPage extends ProductsBasePage {
+public class CheckoutProductsPage extends BaseProductsPage {
 
     private final By firstNameInput = By.cssSelector("#first-name");
     private final By lastNameInput = By.cssSelector("#last-name");
     private final By postalCodeInput = By.cssSelector("#postal-code");
     private final By continueButton = By.cssSelector("#continue");
 
-    public CheckoutPage(WebDriver driver) {
+    public CheckoutProductsPage(WebDriver driver) {
         super(driver);
     }
 

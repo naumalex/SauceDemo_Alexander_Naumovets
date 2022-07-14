@@ -1,5 +1,6 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.BaseProductsPage;
 
 public class ShoppingCartTests extends BaseTest {
     final String PAGE_HEADER = "YOUR CART";
@@ -34,5 +35,15 @@ public class ShoppingCartTests extends BaseTest {
                 DEFAULT_PRODUCT_PRICE,
                 "Product price is different from the expected value");
         checkoutOverviewPage.clickFinishButton();
+    }
+
+    @Test
+    public void removeProductFromShoppingCart() {
+        loginPage.login(DEFAULT_USER_NAME, DEFAULT_PASSWORD);
+        productsPage.clickAddToCartButton(DEFAULT_PRODUCT_NAME);
+        productsPage.openShoppingCart();
+        shoppingCartPage.clickRemove(DEFAULT_PRODUCT_NAME);
+        Assert.assertFalse(shoppingCartPage.getProductItems().size() > 0,
+                "Product item was not removed from the Shopping Cart");
     }
 }

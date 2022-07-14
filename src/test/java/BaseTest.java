@@ -21,9 +21,9 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected ProductsPage productsPage;
     protected ItemDetailsPage itemDetailsPage;
-    protected ShoppingCartPage shoppingCartPage;
-    protected CheckoutPage checkoutPage;
-    protected CheckoutOverviewPage checkoutOverviewPage;
+    protected ShoppingCartProductsPage shoppingCartPage;
+    protected CheckoutProductsPage checkoutPage;
+    protected CheckoutOverviewProductsPage checkoutOverviewPage;
 
     @BeforeClass
     public void setUp() {
@@ -34,9 +34,9 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         itemDetailsPage = new ItemDetailsPage(driver);
-        shoppingCartPage = new ShoppingCartPage(driver);
-        checkoutPage = new CheckoutPage(driver);
-        checkoutOverviewPage = new CheckoutOverviewPage(driver);
+        shoppingCartPage = new ShoppingCartProductsPage(driver);
+        checkoutPage = new CheckoutProductsPage(driver);
+        checkoutOverviewPage = new CheckoutOverviewProductsPage(driver);
     }
 
 
