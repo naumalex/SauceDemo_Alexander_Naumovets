@@ -1,3 +1,5 @@
+package tests;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -6,7 +8,8 @@ import java.util.List;
 
 public class ProductsTests extends BaseTest {
 
-    @Test
+    @Test(groups = {"regression"}, description = "Check sorting by Name and Price "
+    + "asc/desc is correct")
     public void testSorting() {
         loginPage.login(DEFAULT_USER_NAME, DEFAULT_PASSWORD);
 

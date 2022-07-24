@@ -12,6 +12,6 @@ public class CheckoutOverviewProductsPage extends BaseProductsPage {
     }
 
     public void clickFinishButton() {
-        driver.findElement(finishButton).click();
+       driver.findElement(finishButton).click();
     }
 }

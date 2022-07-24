@@ -1,7 +1,10 @@
+package tests.outdated;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import tests.BaseTest;
 
-public class Locator extends BaseTest{
+public class Locator extends BaseTest {
 
     public void testLocators() {
         WebElement locatorByID = driver.findElement(By.id("user-name"));

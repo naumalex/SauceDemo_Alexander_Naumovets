@@ -9,6 +9,7 @@ public class CheckoutProductsPage extends BaseProductsPage {
     private final By lastNameInput = By.cssSelector("#last-name");
     private final By postalCodeInput = By.cssSelector("#postal-code");
     private final By continueButton = By.cssSelector("#continue");
+    private final By cancelButton = By.cssSelector("#cancel");
 
     public CheckoutProductsPage(WebDriver driver) {
         super(driver);
@@ -30,6 +31,9 @@ public class CheckoutProductsPage extends BaseProductsPage {
         driver.findElement(continueButton).click();
     }
 
+    public void clickCancelButton() {
+        driver.findElement(cancelButton).click();
+    }
     public void checkoutProduct(String firstName, String lastName,
                                 String postalCode) {
         setFirstName(firstName);

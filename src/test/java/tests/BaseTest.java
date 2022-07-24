@@ -1,13 +1,17 @@
+ package tests;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.safari.SafariDriver;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
 import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
+@Listeners(TestListener.class)
 public class BaseTest {
     final String DEFAULT_USER_NAME = "standard_user";
     final String DEFAULT_PASSWORD = "secret_sauce";
@@ -25,10 +29,21 @@ public class BaseTest {
     protected CheckoutProductsPage checkoutPage;
     protected CheckoutOverviewProductsPage checkoutOverviewPage;
 
-    @BeforeClass
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+
+    @Parameters({"browser"})
+    @BeforeClass (alwaysRun = true)
+    public void setUp(@Optional("chrome") String browserName,
+                      ITestContext testContext) throws Exception {
+        if (browserName.equals("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        } else if (browserName.equals("safari")) {
+            WebDriverManager.safaridriver().setup();
+            driver = new SafariDriver();
+        } else {
+            throw new Exception("Undefined Browser Type");
+        }
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = new LoginPage(driver);
@@ -37,15 +52,22 @@ public class BaseTest {
         shoppingCartPage = new ShoppingCartProductsPage(driver);
         checkoutPage = new CheckoutProductsPage(driver);
         checkoutOverviewPage = new CheckoutOverviewProductsPage(driver);
+        testContext.setAttribute("driver", driver);
     }
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void navigate() {
         driver.get("https://www.saucedemo.com/");
     }
 
-    @AfterClass
+    @AfterMethod(alwaysRun = true)
+    public void ClearCookies() {
+        driver.manage().deleteAllCookies();
+        ((JavascriptExecutor) driver).executeScript(String.format("window.localStorage.clear();"));
+        ((JavascriptExecutor) driver).executeScript(String.format("window.sessionStorage.clear();"));
+    }
+    @AfterClass(alwaysRun = true)
     public void quitDriver() {
         driver.quit();
     }
