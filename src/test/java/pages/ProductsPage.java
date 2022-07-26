@@ -10,6 +10,7 @@ import java.util.List;
 
 public class ProductsPage extends BaseProductsPage {
     private final By addToCartButton = By.cssSelector("[id^='add-to-cart']");
+    private final By removeButton = By.cssSelector("[id^='remove']");
     private final By productLink = By.cssSelector("[id$='_link']");
     private final By sortSelect = By.cssSelector(
             "#header_container .product_sort_container");
@@ -28,6 +29,10 @@ public class ProductsPage extends BaseProductsPage {
         productContainer.findElement(addToCartButton).click();
     }
 
+    public void clickRemoveButton(String name) {
+        WebElement productContainer = getProductsContainerByName(name);
+        productContainer.findElement(removeButton).click();
+    }
     public void openItemByName(String productName) {
         WebElement productContainer = getProductsContainerByName(productName);
         productContainer.findElement(productLink).click();
