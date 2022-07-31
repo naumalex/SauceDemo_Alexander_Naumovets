@@ -2,14 +2,23 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
-    By userNameInput = By.id("user-name");
-    By passwordInput = By.id("password");
-    By loginButton = By.id("login-button");
-    By errorMessageContainer = By.cssSelector(".error-message-container");
+    @FindBy(css = "#user-name")
+    WebElement userNameInput;
+    @FindBy(css = "#password")
+    WebElement passwordInput;
+    @FindBy(css = "#login-button")
+    WebElement loginButton;
+    @FindBy(css = ".error-message-container")
+    WebElement errorMessageContainer;
+
     public LoginPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     public void login(String userName, String password) {
@@ -19,22 +28,22 @@ public class LoginPage extends BasePage {
     }
 
     public void setUserName(String userName) {
-        driver.findElement(userNameInput).sendKeys(userName);
+        userNameInput.sendKeys(userName);
     }
 
     public void setPassword(String password) {
-        driver.findElement(passwordInput).sendKeys(password);
+        passwordInput.sendKeys(password);
     }
 
     public void clickLoginButton() {
-        driver.findElement(loginButton).click();
+        loginButton.click();
     }
 
     public boolean isErrorMessageDisplayed() {
-        return driver.findElement(errorMessageContainer).isDisplayed();
+        return errorMessageContainer.isDisplayed();
     }
 
     public String getErrorText() {
-        return driver.findElement(errorMessageContainer).getText();
+        return errorMessageContainer.getText();
     }
 }

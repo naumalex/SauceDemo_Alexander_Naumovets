@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 
 public class LoginTest extends BaseTest {
-
     @Test(groups = {"smoke", "regression"}, description = "Log in with correct credentials. "
     + "Verify that login is successful.")
     public void positiveLoginTest() {
