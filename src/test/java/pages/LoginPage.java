@@ -1,6 +1,7 @@
 package pages;
 
-import org.openqa.selenium.By;
+import Utils.AllureUtils;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,11 +21,12 @@ public class LoginPage extends BasePage {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
+    @Step
     public void login(String userName, String password) {
         setUserName(userName);
         setPassword(password);
         clickLoginButton();
+     //  AllureUtils.attachScreenshot(driver);
     }
 
     public void setUserName(String userName) {

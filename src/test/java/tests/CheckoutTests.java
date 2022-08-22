@@ -1,8 +1,9 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
+@Listeners(TestListener.class)
 public class CheckoutTests extends BaseTest {
     final String FIRST_NAME = "Alexander";
     final String LAST_NAME = "Smith";
@@ -14,6 +15,7 @@ public class CheckoutTests extends BaseTest {
             + " and checkout it. Verify that Enter Your Information page is opened. "
             + "Fill you information and continue checkout. Verify that the item description"
             + " and price are correct")
+
     public void payForProduct() {
         loginPage.login(DEFAULT_USER_NAME, DEFAULT_PASSWORD);
         productsPage.openItemByName(DEFAULT_PRODUCT_NAME);
@@ -49,6 +51,7 @@ public class CheckoutTests extends BaseTest {
 
     @Test(groups = {"negative"}, description = "Click Cancel while checking out. "
     + "Verify that user was returned back to the Shopping Cart page")
+
     public void cancelCheckout() {
         loginPage.login(DEFAULT_USER_NAME, DEFAULT_PASSWORD);
         productsPage.openItemByName(DEFAULT_PRODUCT_NAME);
@@ -56,7 +59,7 @@ public class CheckoutTests extends BaseTest {
         itemDetailsPage.openShoppingCart();
         shoppingCartPage.clickCheckoutButton();
         checkoutPage.clickCancelButton();
-        Assert.assertEquals(shoppingCartPage.getPageHeader(),"YOUR CART",
+        Assert.assertEquals(shoppingCartPage.getPageHeader(),"YOUR CART1",
                 "Shopping Cart Page should be opened");
     }
 }

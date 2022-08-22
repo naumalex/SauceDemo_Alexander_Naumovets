@@ -9,7 +9,7 @@
     <test name="Regression tests">
         <groups>
             <run>
-                <include name="regression"/>
+                <include name="test"/>
             </run>
         </groups>
         <packages>

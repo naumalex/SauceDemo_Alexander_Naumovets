@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -34,6 +35,7 @@ public class CheckoutProductsPage extends BaseProductsPage {
     public void clickCancelButton() {
         driver.findElement(cancelButton).click();
     }
+    @Step
     public void checkoutProduct(String firstName, String lastName,
                                 String postalCode) {
         setFirstName(firstName);

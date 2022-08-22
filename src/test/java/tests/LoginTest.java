@@ -1,20 +1,30 @@
 package tests;
 
+import Utils.AllureUtils;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Step;
+import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-
 public class LoginTest extends BaseTest {
-    @Test(groups = {"smoke", "regression"}, description = "Log in with correct credentials. "
-    + "Verify that login is successful.")
-    public void positiveLoginTest() {
-        loginPage.setUserName("standard_user");
-        loginPage.setPassword("secret_sauce");
-        loginPage.clickLoginButton();
-        Assert.assertTrue(productsPage.isProductsPageHeaderDisplayed(),
-                "Login is not successful");
 
+    @Test(groups = {"smoke", "regression", "test"}, description = "Log in with correct credentials. "
+    + "Verify that login is successful.")
+    @Issue("0001")
+    @TmsLink("tc0001")
+    public void positiveLoginTest() {
+       loginPage.login("standard_user", "secret_sauce");
+        /* loginPage.setUserName("standard_user");
+        loginPage.setPassword("secret_sauce");
+        loginPage.clickLoginButton();*/
+        /*Assert.assertTrue(productsPage.isProductsPageHeaderDisplayed(),
+                "Login is not successful");*/
+        //Allure.addAttachment("Result", "text/plain", "link");
+        checkLoginSuccessful();
     }
 
     @Test(groups = {"negative"}, dataProvider = "login",
@@ -43,5 +53,11 @@ public class LoginTest extends BaseTest {
                                 "Username and password do not match any user in this service"},
                         {"locked_out_user", DEFAULT_PASSWORD, "Sorry, this user has been locked out."}
                 };
+    }
+
+    @Step
+    private void checkLoginSuccessful() {
+        Assert.assertTrue(!productsPage.isProductsPageHeaderDisplayed(),
+                "Login is not successful");
     }
 }

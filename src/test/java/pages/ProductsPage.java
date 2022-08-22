@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,21 +25,24 @@ public class ProductsPage extends BaseProductsPage {
         return driver.findElement(productsPageHeader).isDisplayed();
     }
 
+    @Step
     public void clickAddToCartButton(String name) {
         WebElement productContainer = getProductsContainerByName(name);
         productContainer.findElement(addToCartButton).click();
     }
 
+    @Step
     public void clickRemoveButton(String name) {
         WebElement productContainer = getProductsContainerByName(name);
         productContainer.findElement(removeButton).click();
     }
+    @Step
     public void openItemByName(String productName) {
         WebElement productContainer = getProductsContainerByName(productName);
         productContainer.findElement(productLink).click();
 
     }
-
+    @Step
     public void sortProductItems(String sortOption) {
         Select sortSelectElement = new Select(driver.findElement(sortSelect));
         sortSelectElement.selectByVisibleText(sortOption);

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -11,10 +12,12 @@ public class ShoppingCartProductsPage extends BaseProductsPage {
         super(driver);
     }
 
+    @Step
     public void clickCheckoutButton() {
         driver.findElement(checkoutButton).click();
     }
 
+    @Step
     public void clickRemove(String productItemName) {
         getProductsContainerByName(productItemName).findElement(removeButton).click();
     }

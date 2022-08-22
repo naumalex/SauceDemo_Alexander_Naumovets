@@ -1,5 +1,8 @@
 package tests;
 
+import Utils.AllureUtils;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -16,9 +19,15 @@ public class TestListener implements ITestListener {
     }
 
     @Override
+   // @Step
     public void onTestSuccess(ITestResult result) {
         ITestListener.super.onTestSuccess(result);
-        System.out.println("Test " + result.getName() + " finished");
+       // Allure.addAttachment("Result", "text/plain", "link");
+        WebDriver driver  = (WebDriver) result.getTestContext().getAttribute("driver");
+       // AllureUtils.attachScreenshot(driver);
+     //   File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        System.out.println("Test " + result.getName() + " successfully  finished");
+
     }
 
     @Override
@@ -26,6 +35,9 @@ public class TestListener implements ITestListener {
         ITestListener.super.onTestFailure(result);
         System.out.println("Test " + result.getName() + " failed");
         WebDriver driver  = (WebDriver) result.getTestContext().getAttribute("driver");
-        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+       // Allure.addAttachment("Result", "text/plain", "link");
+       AllureUtils.attachScreenshot(driver);
+       // File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+      //  System.out.println(file.getAbsolutePath());
     }
 }

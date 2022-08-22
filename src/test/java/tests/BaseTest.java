@@ -11,7 +11,7 @@ import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
-@Listeners(TestListener.class)
+
 public class BaseTest {
     final String DEFAULT_USER_NAME = "standard_user";
     final String DEFAULT_PASSWORD = "secret_sauce";
