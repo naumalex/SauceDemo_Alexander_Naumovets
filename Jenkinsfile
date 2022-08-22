@@ -6,7 +6,7 @@
          maven "m3"
      }
 
-     parameters {
+     parameters (
       [gitParameter (branchFilter: 'origin/(.*)', defaultValue: 'master',
       name: 'BRANCH', type: 'PT_BRANCH'),
       string (
@@ -15,7 +15,7 @@
       trim: true
       )
       ]
-     }
+     )
 
    stages {
          stage('Run tests') {
