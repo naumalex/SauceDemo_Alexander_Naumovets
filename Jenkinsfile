@@ -6,14 +6,15 @@
          maven "m3"
      }
 
-     parameters ([gitParameter (branchFilter: 'origin/(.*)', defaultValue: 'master',
-      name: 'BRANCH', type: 'PT_BRANCH'),
-      string (
-      defaultValue: 'regression.xml',
-      name: 'SUITE_NAME',
-      trim: true
-      )
-     ])
+     parameters {
+        gitParameter (branchFilter: 'origin/(.*)', defaultValue: 'master',
+        name: 'BRANCH', type: 'PT_BRANCH'),
+
+        string (
+        defaultValue: 'regression.xml',
+        name: 'SUITE_NAME',
+        trim: true
+      }
 
    stages {
          stage('Run tests') {
