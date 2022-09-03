@@ -7,11 +7,13 @@
      }
 
      parameters {
-        gitParameter (branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH')
+        gitParameter (branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH',
+        type: 'PT_BRANCH')
 
-        string (
-        defaultValue: 'regression.xml',
+        suite (
+        defaultValue: 'regression',
         name: 'SUITE_NAME',
+        choices: ['regression', 'smoke', 'negative'],
         trim: true)
       }
 
@@ -22,7 +24,7 @@
                  git branch: "${params.BRANCH}", url: 'https://github.com/naumalex/SauceDemo_Alexander_Naumovets.git'
 
                  // Run Maven on a Unix agent.
-                bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlfile={params.SUITE_NAME} clean test"
+                bat "mvn -Dmaven.test.failure.ignore=true -DsuiteXmlfile={params.SUITE_NAME}.xml clean test"
 
                  // To run Maven on a Windows agent, use
                  // bat "mvn -Dmaven.test.failure.ignore=true clean package"
