@@ -22,7 +22,7 @@
                  git branch: "${params.BRANCH}", url: 'https://github.com/naumalex/SauceDemo_Alexander_Naumovets.git'
 
                  // Run Maven on a Unix agent.
-                bat "mvn -Dmaven.test.failure.ignore=true clean test -DsuiteXmlFile=smoke.xml"
+                bat "mvn -Dmaven.test.failure.ignore=true clean test -DsuiteXmlFile=${params.SUITE_NAME}.xml"
 
                  // To run Maven on a Windows agent, use
                  // bat "mvn -Dmaven.test.failure.ignore=true clean package"
