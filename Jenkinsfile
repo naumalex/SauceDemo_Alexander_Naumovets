@@ -11,8 +11,8 @@
 
         choice (
         name: 'SUITE_NAME',
-        choices: ['regression', 'smoke', 'negative'],
-        trim: true)
+        choices: ['regression', 'smoke', 'negative']
+        )
       }
 
    stages {
