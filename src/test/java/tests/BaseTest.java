@@ -30,20 +30,20 @@ public class BaseTest {
     protected CheckoutOverviewProductsPage checkoutOverviewPage;
 
 
-    @Parameters({"browser"})
+  @Parameters({"browser"})
     @BeforeClass (alwaysRun = true)
-    public void setUp(@Optional("chrome") String browserName,
+    public void setUp(@Optional("chrome") String browserNameInSuitXML,
                       ITestContext testContext) throws Exception {
-        if (browserName.equals("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-        } else if (browserName.equals("safari")) {
-            WebDriverManager.safaridriver().setup();
-            driver = new SafariDriver();
-        } else {
-            throw new Exception("Undefined Browser Type");
-        }
 
+        String browserNameInCommandLine =
+            System.getProperty("browser");
+        if (!(browserNameInCommandLine.isEmpty()
+            || browserNameInCommandLine.isBlank())) {
+            driver = DriverFactory.getDriver(browserNameInCommandLine);
+        }
+        else {
+            driver = DriverFactory.getDriver(browserNameInSuitXML);
+        }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         loginPage = new LoginPage(driver);
