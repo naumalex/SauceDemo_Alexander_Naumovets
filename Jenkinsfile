@@ -5,7 +5,9 @@
          // Install the Maven version configured as "M3" and add it to the path.
          maven "m3"
      }
-
+    triggers {
+            cron('30 23 * * *')
+    }
      parameters {
         gitParameter (branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH')
 
